@@ -1,0 +1,10 @@
+{
+    "name": "Diamond",
+    "color": "0x66AAFF",
+    "durability": 1561,
+    "attackDamage": 7,
+    "miningSpeed": 8,
+    "miningLevel": 3,
+    "weight": 3,
+    "duraMult": 2
+}

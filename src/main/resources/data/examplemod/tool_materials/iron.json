@@ -1,0 +1,10 @@
+{
+  "name": "Iron",
+  "color": "0xEEEEEE",
+  "durability": 250,
+  "attackDamage": 6,
+  "miningSpeed": 6,
+  "miningLevel": 2,
+  "weight": 4,
+  "duraMult": 1.25
+}
