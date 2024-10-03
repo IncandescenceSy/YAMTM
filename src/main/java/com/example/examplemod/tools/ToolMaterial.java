@@ -7,10 +7,10 @@ public record ToolMaterial(String name, String color,
                            int durability, float attackDamage, float miningSpeed, int miningLevel,
                            float drawSpeed, float airSpeed,
                            float weight, float duraMult,
-                           boolean generateRecipes) {
-    // Missing capabilities: items/tags to use for the material item, available/missing parts, innate augments
+                           boolean generateRecipes, boolean extrude) {
+    // Missing capabilities: items/tags to use for the material item, available/missing parts, items to use as part substitutes, innate augments
 
-    public static final Codec<ToolMaterial> CODEC = RecordCodecBuilder.create(instance ->
+    public static final Codec<ToolMaterial> CODEC_MATERIAL = RecordCodecBuilder.create(instance ->
             instance.group(
                     Codec.STRING.fieldOf("name").forGetter(ToolMaterial::name),
                     Codec.STRING.fieldOf("color").forGetter(ToolMaterial::color),
@@ -26,7 +26,10 @@ public record ToolMaterial(String name, String color,
                     Codec.FLOAT.optionalFieldOf("duraMult", -1F).forGetter(ToolMaterial::duraMult),
 
                     // Prevents making tools normally. Intended for Netherite
-                    Codec.BOOL.optionalFieldOf("generateRecipes", true).forGetter(ToolMaterial::generateRecipes)
+                    Codec.BOOL.optionalFieldOf("generateRecipes", true).forGetter(ToolMaterial::generateRecipes),
+
+                    // Prevents making tools normally and forces using the GregTech Extruder if GregTech is installed
+                    Codec.BOOL.optionalFieldOf("extrude", true).forGetter(ToolMaterial::extrude)
             ).apply(instance, ToolMaterial::new)
     );
 }
